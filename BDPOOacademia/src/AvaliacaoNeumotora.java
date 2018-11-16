@@ -1,5 +1,10 @@
+import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+@Entity
 public class AvaliacaoNeumotora {
 	private Integer resistencia;
 	private Integer força;
@@ -11,6 +16,9 @@ public class AvaliacaoNeumotora {
 	private Integer massaOssea;
 	private Integer massaResidual;
 	private Integer gordura;
+	@ManyToOne
+	private ArrayList<Instrutor> instrutores;
+	@Id
 	private Date dataAvaliação;
 	public Integer getResistencia() {
 		return resistencia;
@@ -72,6 +80,12 @@ public class AvaliacaoNeumotora {
 	public void setGordura(Integer gordura) {
 		this.gordura = gordura;
 	}
+	public ArrayList<Instrutor> getInstrutores() {
+		return instrutores;
+	}
+	public void setInstrutores(ArrayList<Instrutor> instrutores) {
+		this.instrutores = instrutores;
+	}
 	public Date getDataAvaliação() {
 		return dataAvaliação;
 	}
@@ -86,6 +100,7 @@ public class AvaliacaoNeumotora {
 		result = prime * result + ((flexibilidade == null) ? 0 : flexibilidade.hashCode());
 		result = prime * result + ((força == null) ? 0 : força.hashCode());
 		result = prime * result + ((gordura == null) ? 0 : gordura.hashCode());
+		result = prime * result + ((instrutores == null) ? 0 : instrutores.hashCode());
 		result = prime * result + ((massaGorda == null) ? 0 : massaGorda.hashCode());
 		result = prime * result + ((massaMagra == null) ? 0 : massaMagra.hashCode());
 		result = prime * result + ((massaOssea == null) ? 0 : massaOssea.hashCode());
@@ -123,6 +138,11 @@ public class AvaliacaoNeumotora {
 			if (other.gordura != null)
 				return false;
 		} else if (!gordura.equals(other.gordura))
+			return false;
+		if (instrutores == null) {
+			if (other.instrutores != null)
+				return false;
+		} else if (!instrutores.equals(other.instrutores))
 			return false;
 		if (massaGorda == null) {
 			if (other.massaGorda != null)
@@ -166,17 +186,18 @@ public class AvaliacaoNeumotora {
 		return "AvaliacaoNeumotora [resistencia=" + resistencia + ", força=" + força + ", potenciaMMSS=" + potenciaMMSS
 				+ ", vo2Maximo=" + vo2Maximo + ", flexibilidade=" + flexibilidade + ", massaGorda=" + massaGorda
 				+ ", massaMagra=" + massaMagra + ", massaOssea=" + massaOssea + ", massaResidual=" + massaResidual
-				+ ", gordura=" + gordura + ", dataAvaliação=" + dataAvaliação + ", getResistencia()=" + getResistencia()
-				+ ", getForça()=" + getForça() + ", getPotenciaMMSS()=" + getPotenciaMMSS() + ", getVo2Maximo()="
-				+ getVo2Maximo() + ", getFlexibilidade()=" + getFlexibilidade() + ", getMassaGorda()=" + getMassaGorda()
-				+ ", getMassaMagra()=" + getMassaMagra() + ", getMassaOssea()=" + getMassaOssea()
-				+ ", getMassaResidual()=" + getMassaResidual() + ", getGordura()=" + getGordura()
-				+ ", getDataAvaliação()=" + getDataAvaliação() + ", hashCode()=" + hashCode() + ", getClass()="
-				+ getClass() + ", toString()=" + super.toString() + "]";
+				+ ", gordura=" + gordura + ", instrutores=" + instrutores + ", dataAvaliação=" + dataAvaliação
+				+ ", getResistencia()=" + getResistencia() + ", getForça()=" + getForça() + ", getPotenciaMMSS()="
+				+ getPotenciaMMSS() + ", getVo2Maximo()=" + getVo2Maximo() + ", getFlexibilidade()="
+				+ getFlexibilidade() + ", getMassaGorda()=" + getMassaGorda() + ", getMassaMagra()=" + getMassaMagra()
+				+ ", getMassaOssea()=" + getMassaOssea() + ", getMassaResidual()=" + getMassaResidual()
+				+ ", getGordura()=" + getGordura() + ", getInstrutores()=" + getInstrutores() + ", getDataAvaliação()="
+				+ getDataAvaliação() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()="
+				+ super.toString() + "]";
 	}
 	public AvaliacaoNeumotora(Integer resistencia, Integer força, Integer potenciaMMSS, Integer vo2Maximo,
 			Integer flexibilidade, Integer massaGorda, Integer massaMagra, Integer massaOssea, Integer massaResidual,
-			Integer gordura, Date dataAvaliação) {
+			Integer gordura, ArrayList<Instrutor> instrutores, Date dataAvaliação) {
 		super();
 		this.resistencia = resistencia;
 		this.força = força;
@@ -188,8 +209,8 @@ public class AvaliacaoNeumotora {
 		this.massaOssea = massaOssea;
 		this.massaResidual = massaResidual;
 		this.gordura = gordura;
+		this.instrutores = instrutores;
 		this.dataAvaliação = dataAvaliação;
 	}
-	
 	
 }

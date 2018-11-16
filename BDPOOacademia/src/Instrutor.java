@@ -1,5 +1,9 @@
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Instrutor {
+	@Id
 	private Integer id;
 	private String nome;
 	private Integer cref;

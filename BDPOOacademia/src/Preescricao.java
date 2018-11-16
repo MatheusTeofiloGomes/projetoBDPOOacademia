@@ -1,10 +1,14 @@
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public class Preescricao {
 	private Date hora0;
 	private Date horaF;
 	private Date data0;
 	private Date dataF;
+	@Id
 	private Integer repetição;
 	public Date getHora0() {
 		return hora0;

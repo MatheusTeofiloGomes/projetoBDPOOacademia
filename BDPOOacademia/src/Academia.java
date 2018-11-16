@@ -1,8 +1,17 @@
+import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Academia {
 	private String nome;
 	private String endereço;
+	@Id
 	private Integer numeroAlvara;
+	@ManyToOne
+	private ArrayList<Instrutor> instrutores;
 	public String getNome() {
 		return nome;
 	}
@@ -21,27 +30,18 @@ public class Academia {
 	public void setNumeroAlvara(Integer numeroAlvara) {
 		this.numeroAlvara = numeroAlvara;
 	}
-	public Integer getIdInstrutor() {
-		return idInstrutor;
+	public ArrayList<Instrutor> getInstrutores() {
+		return instrutores;
 	}
-	public void setIdInstrutor(Integer idInstrutor) {
-		this.idInstrutor = idInstrutor;
+	public void setInstrutores(ArrayList<Instrutor> instrutores) {
+		this.instrutores = instrutores;
 	}
-	public Integer getIdAluno() {
-		return idAluno;
-	}
-	public void setIdAluno(Integer idAluno) {
-		this.idAluno = idAluno;
-	}
-	private Integer idInstrutor;
-	private Integer idAluno;
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((endereço == null) ? 0 : endereço.hashCode());
-		result = prime * result + ((idAluno == null) ? 0 : idAluno.hashCode());
-		result = prime * result + ((idInstrutor == null) ? 0 : idInstrutor.hashCode());
+		result = prime * result + ((instrutores == null) ? 0 : instrutores.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((numeroAlvara == null) ? 0 : numeroAlvara.hashCode());
 		return result;
@@ -60,15 +60,10 @@ public class Academia {
 				return false;
 		} else if (!endereço.equals(other.endereço))
 			return false;
-		if (idAluno == null) {
-			if (other.idAluno != null)
+		if (instrutores == null) {
+			if (other.instrutores != null)
 				return false;
-		} else if (!idAluno.equals(other.idAluno))
-			return false;
-		if (idInstrutor == null) {
-			if (other.idInstrutor != null)
-				return false;
-		} else if (!idInstrutor.equals(other.idInstrutor))
+		} else if (!instrutores.equals(other.instrutores))
 			return false;
 		if (nome == null) {
 			if (other.nome != null)
@@ -84,20 +79,17 @@ public class Academia {
 	}
 	@Override
 	public String toString() {
-		return "Academia [nome=" + nome + ", endereço=" + endereço + ", numeroAlvara=" + numeroAlvara + ", idInstrutor="
-				+ idInstrutor + ", idAluno=" + idAluno + ", getNome()=" + getNome() + ", getEndereço()=" + getEndereço()
-				+ ", getNumeroAlvara()=" + getNumeroAlvara() + ", getIdInstrutor()=" + getIdInstrutor()
-				+ ", getIdAluno()=" + getIdAluno() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
-				+ ", toString()=" + super.toString() + "]";
+		return "Academia [nome=" + nome + ", endereço=" + endereço + ", numeroAlvara=" + numeroAlvara + ", instrutores="
+				+ instrutores + ", getNome()=" + getNome() + ", getEndereço()=" + getEndereço() + ", getNumeroAlvara()="
+				+ getNumeroAlvara() + ", getInstrutores()=" + getInstrutores() + ", hashCode()=" + hashCode()
+				+ ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
 	}
-	public Academia(String nome, String endereço, Integer numeroAlvara, Integer idInstrutor, Integer idAluno) {
+	public Academia(String nome, String endereço, Integer numeroAlvara, ArrayList<Instrutor> instrutores) {
 		super();
 		this.nome = nome;
 		this.endereço = endereço;
 		this.numeroAlvara = numeroAlvara;
-		this.idInstrutor = idInstrutor;
-		this.idAluno = idAluno;
+		this.instrutores = instrutores;
 	}
-	
 
 }
