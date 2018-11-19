@@ -79,7 +79,8 @@ public class AvaliacaoNeumotora {
 	public Integer getGordura() {
 		return gordura;
 	}
-	public void setGordura(Integer gordura) {
+
+	public void setGordura1(Integer gordura) {
 		this.gordura = gordura;
 	}
 	public ArrayList<Instrutor> getInstrutores() {
