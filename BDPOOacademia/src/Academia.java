@@ -14,9 +14,12 @@ public class Academia {
 	private String endereço;
 	@Id
 	private Integer numeroAlvara;
-	@ManyToOne
-	@JoinColumn(name="id_Instrutor")
-	private ArrayList<Instrutor> instrutores;
+	@ManyToMany
+	@JoinTable(
+			name="instrutor_academia",
+			joinColumns=@JoinColumn(name="id_academia"),
+			inverseJoinColumns=@JoinColumn(name="id_instrutor"))
+			private Set<Instrutor> instrutores;
 	@ManyToMany
 	@JoinTable(
 			name="exercicio_academia",
@@ -41,10 +44,10 @@ public class Academia {
 	public void setNumeroAlvara(Integer numeroAlvara) {
 		this.numeroAlvara = numeroAlvara;
 	}
-	public ArrayList<Instrutor> getInstrutores() {
+	public Set<Instrutor> getInstrutores() {
 		return instrutores;
 	}
-	public void setInstrutores(ArrayList<Instrutor> instrutores) {
+	public void setInstrutores(Set<Instrutor> instrutores) {
 		this.instrutores = instrutores;
 	}
 	public Set<Exercicio> getExercicios() {
@@ -114,7 +117,7 @@ public class Academia {
 		this.nome = nome;
 		this.endereço = endereço;
 		this.numeroAlvara = numeroAlvara;
-		this.instrutores = instrutores;
+		this.instrutores = (Set<Instrutor>) instrutores;
 		this.exercicios = (Set<Exercicio>) exercicios;
 	}
 }
