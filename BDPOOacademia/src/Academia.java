@@ -1,7 +1,11 @@
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -11,7 +15,14 @@ public class Academia {
 	@Id
 	private Integer numeroAlvara;
 	@ManyToOne
+	@JoinColumn(name="id_Instrutor")
 	private ArrayList<Instrutor> instrutores;
+	@ManyToMany
+	@JoinTable(
+			name="exercicio_academia",
+			joinColumns=@JoinColumn(name="academia_id"),
+			inverseJoinColumns=@JoinColumn(name="id_exercicio"))
+			private Set<Exercicio>exercicios;
 	public String getNome() {
 		return nome;
 	}
@@ -36,11 +47,18 @@ public class Academia {
 	public void setInstrutores(ArrayList<Instrutor> instrutores) {
 		this.instrutores = instrutores;
 	}
+	public Set<Exercicio> getExercicios() {
+		return exercicios;
+	}
+	public void setExercicios(Set<Exercicio> exercicios) {
+		this.exercicios = exercicios;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((endereço == null) ? 0 : endereço.hashCode());
+		result = prime * result + ((exercicios == null) ? 0 : exercicios.hashCode());
 		result = prime * result + ((instrutores == null) ? 0 : instrutores.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((numeroAlvara == null) ? 0 : numeroAlvara.hashCode());
@@ -59,6 +77,11 @@ public class Academia {
 			if (other.endereço != null)
 				return false;
 		} else if (!endereço.equals(other.endereço))
+			return false;
+		if (exercicios == null) {
+			if (other.exercicios != null)
+				return false;
+		} else if (!exercicios.equals(other.exercicios))
 			return false;
 		if (instrutores == null) {
 			if (other.instrutores != null)
@@ -80,16 +103,18 @@ public class Academia {
 	@Override
 	public String toString() {
 		return "Academia [nome=" + nome + ", endereço=" + endereço + ", numeroAlvara=" + numeroAlvara + ", instrutores="
-				+ instrutores + ", getNome()=" + getNome() + ", getEndereço()=" + getEndereço() + ", getNumeroAlvara()="
-				+ getNumeroAlvara() + ", getInstrutores()=" + getInstrutores() + ", hashCode()=" + hashCode()
-				+ ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
+				+ instrutores + ", exercicios=" + exercicios + ", getNome()=" + getNome() + ", getEndereço()="
+				+ getEndereço() + ", getNumeroAlvara()=" + getNumeroAlvara() + ", getInstrutores()=" + getInstrutores()
+				+ ", getExercicios()=" + getExercicios() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
+				+ ", toString()=" + super.toString() + "]";
 	}
-	public Academia(String nome, String endereço, Integer numeroAlvara, ArrayList<Instrutor> instrutores) {
+	public Academia(String nome, String endereço, Integer numeroAlvara, ArrayList<Instrutor> instrutores,
+			ArrayList<Exercicio> exercicios) {
 		super();
 		this.nome = nome;
 		this.endereço = endereço;
 		this.numeroAlvara = numeroAlvara;
 		this.instrutores = instrutores;
+		this.exercicios = (Set<Exercicio>) exercicios;
 	}
-
 }

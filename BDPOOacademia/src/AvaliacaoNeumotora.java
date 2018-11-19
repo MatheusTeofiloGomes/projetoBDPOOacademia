@@ -3,6 +3,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 @Entity
 public class AvaliacaoNeumotora {
@@ -17,6 +18,7 @@ public class AvaliacaoNeumotora {
 	private Integer massaResidual;
 	private Integer gordura;
 	@ManyToOne
+	@JoinColumn(name="id_Instrutor")
 	private ArrayList<Instrutor> instrutores;
 	@Id
 	private Date dataAvaliação;

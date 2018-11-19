@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 @Entity
 public class Exercicio {
@@ -12,6 +13,7 @@ public class Exercicio {
 	private String categoria;
 	private Integer caloriasGastas;
 	@ManyToOne
+	@JoinColumn(name="id_Preescricao")
 	private ArrayList<Preescricao> preescricoes;
 	public Integer getId() {
 		return id;

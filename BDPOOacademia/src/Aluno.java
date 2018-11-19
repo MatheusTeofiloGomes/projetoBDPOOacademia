@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 @Entity
 public class Aluno {
 	@Id
@@ -9,6 +15,12 @@ public class Aluno {
 	private String sexo;
 	private Integer idInstrutor;
 	private Integer imc;
+	@ManyToMany
+	@JoinTable(
+			name="exercicio_aluno",
+			joinColumns=@JoinColumn(name="aluno_id"),
+			inverseJoinColumns=@JoinColumn(name="id_exercicio"))
+			private Set<Exercicio>exercicios;
 	public Integer getId() {
 		return id;
 	}
@@ -45,10 +57,17 @@ public class Aluno {
 	public void setImc(Integer imc) {
 		this.imc = imc;
 	}
+	public Set<Exercicio> getExercicios() {
+		return exercicios;
+	}
+	public void setExercicios(Set<Exercicio> exercicios) {
+		this.exercicios = exercicios;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((exercicios == null) ? 0 : exercicios.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((idInstrutor == null) ? 0 : idInstrutor.hashCode());
 		result = prime * result + ((idade == null) ? 0 : idade.hashCode());
@@ -66,6 +85,11 @@ public class Aluno {
 		if (getClass() != obj.getClass())
 			return false;
 		Aluno other = (Aluno) obj;
+		if (exercicios == null) {
+			if (other.exercicios != null)
+				return false;
+		} else if (!exercicios.equals(other.exercicios))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -101,12 +125,13 @@ public class Aluno {
 	@Override
 	public String toString() {
 		return "Aluno [id=" + id + ", nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + ", idInstrutor="
-				+ idInstrutor + ", imc=" + imc + ", getId()=" + getId() + ", getNome()=" + getNome() + ", getIdade()="
-				+ getIdade() + ", getSexo()=" + getSexo() + ", getIdInstrutor()=" + getIdInstrutor() + ", getImc()="
-				+ getImc() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()="
-				+ super.toString() + "]";
+				+ idInstrutor + ", imc=" + imc + ", exercicios=" + exercicios + ", getId()=" + getId() + ", getNome()="
+				+ getNome() + ", getIdade()=" + getIdade() + ", getSexo()=" + getSexo() + ", getIdInstrutor()="
+				+ getIdInstrutor() + ", getImc()=" + getImc() + ", getExercicios()=" + getExercicios() + ", hashCode()="
+				+ hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
 	}
-	public Aluno(Integer id, String nome, Integer idade, String sexo, Integer idInstrutor, Integer imc) {
+	public Aluno(Integer id, String nome, Integer idade, String sexo, Integer idInstrutor, Integer imc,
+			Set<Exercicio> exercicios) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -114,6 +139,7 @@ public class Aluno {
 		this.sexo = sexo;
 		this.idInstrutor = idInstrutor;
 		this.imc = imc;
+		this.exercicios = exercicios;
 	}
-//dhwik
+
 }

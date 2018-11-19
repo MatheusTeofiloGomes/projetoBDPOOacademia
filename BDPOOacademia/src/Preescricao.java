@@ -1,7 +1,10 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 @Entity
 public class Preescricao {
 	private Date hora0;
@@ -10,6 +13,9 @@ public class Preescricao {
 	private Date dataF;
 	@Id
 	private Integer repetição;
+	@ManyToOne
+	@JoinColumn(name="id_preescricao")
+	private ArrayList<Preescricao> preescricao;
 	public Date getHora0() {
 		return hora0;
 	}
