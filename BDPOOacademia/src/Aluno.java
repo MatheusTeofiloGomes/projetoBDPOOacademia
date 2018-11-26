@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
 @Entity
 public class Aluno {
 	@Id
@@ -16,53 +17,65 @@ public class Aluno {
 	private Integer idInstrutor;
 	private Integer imc;
 	@ManyToMany
-	@JoinTable(
-			name="exercicio_aluno",
-			joinColumns=@JoinColumn(name="aluno_id"),
-			inverseJoinColumns=@JoinColumn(name="id_exercicio"))
-			private Set<Exercicio>exercicios;
+	@JoinTable(name = "exercicio_aluno", joinColumns = @JoinColumn(name = "aluno_id"), inverseJoinColumns = @JoinColumn(name = "id_exercicio"))
+	private Set<Exercicio> exercicios;
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public Integer getIdade() {
 		return idade;
 	}
+
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
+
 	public String getSexo() {
 		return sexo;
 	}
+
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
+
 	public Integer getIdInstrutor() {
 		return idInstrutor;
 	}
+
 	public void setIdInstrutor(Integer idInstrutor) {
 		this.idInstrutor = idInstrutor;
 	}
+
 	public Integer getImc() {
 		return imc;
 	}
+
 	public void setImc(Integer imc) {
 		this.imc = imc;
 	}
+
 	public Set<Exercicio> getExercicios() {
 		return exercicios;
 	}
+
 	public void setExercicios(Set<Exercicio> exercicios) {
 		this.exercicios = exercicios;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +89,7 @@ public class Aluno {
 		result = prime * result + ((sexo == null) ? 0 : sexo.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -122,6 +136,7 @@ public class Aluno {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Aluno [id=" + id + ", nome=" + nome + ", idade=" + idade + ", sexo=" + sexo + ", idInstrutor="
@@ -130,8 +145,8 @@ public class Aluno {
 				+ getIdInstrutor() + ", getImc()=" + getImc() + ", getExercicios()=" + getExercicios() + ", hashCode()="
 				+ hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
 	}
-	public Aluno(Integer id, String nome, Integer idade, String sexo, Integer idInstrutor, Integer imc,
-			Set<Exercicio> exercicios) {
+
+	public Aluno() {
 		super();
 		this.id = id;
 		this.nome = nome;

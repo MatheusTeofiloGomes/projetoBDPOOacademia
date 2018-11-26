@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 @Entity
 public class AvaliacaoNeumotora {
 	private Integer resistencia;
@@ -17,9 +18,9 @@ public class AvaliacaoNeumotora {
 	private Integer massaOssea;
 	private Integer massaResidual;
 	private Integer gordura;
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name="id_Instrutor")
-	private ArrayList<Instrutor> instrutores;
+	private Set<Instrutor> instrutores;
 	@Id
 	private Date dataAvaliação;
 	public Integer getResistencia() {
@@ -83,10 +84,10 @@ public class AvaliacaoNeumotora {
 	public void setGordura1(Integer gordura) {
 		this.gordura = gordura;
 	}
-	public ArrayList<Instrutor> getInstrutores() {
+	public Set<Instrutor> getInstrutores() {
 		return instrutores;
 	}
-	public void setInstrutores(ArrayList<Instrutor> instrutores) {
+	public void setInstrutores(Set<Instrutor> instrutores) {
 		this.instrutores = instrutores;
 	}
 	public Date getDataAvaliação() {
@@ -198,22 +199,6 @@ public class AvaliacaoNeumotora {
 				+ getDataAvaliação() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()="
 				+ super.toString() + "]";
 	}
-	public AvaliacaoNeumotora(Integer resistencia, Integer força, Integer potenciaMMSS, Integer vo2Maximo,
-			Integer flexibilidade, Integer massaGorda, Integer massaMagra, Integer massaOssea, Integer massaResidual,
-			Integer gordura, ArrayList<Instrutor> instrutores, Date dataAvaliação) {
-		super();
-		this.resistencia = resistencia;
-		this.força = força;
-		this.potenciaMMSS = potenciaMMSS;
-		this.vo2Maximo = vo2Maximo;
-		this.flexibilidade = flexibilidade;
-		this.massaGorda = massaGorda;
-		this.massaMagra = massaMagra;
-		this.massaOssea = massaOssea;
-		this.massaResidual = massaResidual;
-		this.gordura = gordura;
-		this.instrutores = instrutores;
-		this.dataAvaliação = dataAvaliação;
-	}
+	
 	
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.Set;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ public class Preescricao {
 	private Integer repetição;
 	@ManyToOne
 	@JoinColumn(name="id_preescricao")
-	private ArrayList<Preescricao> preescricao;
+	private Set<Preescricao> preescricao;
 	public Date getHora0() {
 		return hora0;
 	}

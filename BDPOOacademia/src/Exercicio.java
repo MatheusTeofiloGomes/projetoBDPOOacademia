@@ -1,9 +1,10 @@
-import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 @Entity
 public class Exercicio {
 	@Id
@@ -14,7 +15,7 @@ public class Exercicio {
 	private Integer caloriasGastas;
 	@ManyToOne
 	@JoinColumn(name="id_Preescricao")
-	private ArrayList<Preescricao> preescricoes;
+	private Preescricao preescricoes;
 	public Integer getId() {
 		return id;
 	}
@@ -45,10 +46,10 @@ public class Exercicio {
 	public void setCaloriasGastas(Integer caloriasGastas) {
 		this.caloriasGastas = caloriasGastas;
 	}
-	public ArrayList<Preescricao> getPreescricoes() {
+	public Preescricao getPreescricoes() {
 		return preescricoes;
 	}
-	public void setPreescricoes(ArrayList<Preescricao> preescricoes) {
+	public void setPreescricoes(Preescricao preescricoes) {
 		this.preescricoes = preescricoes;
 	}
 	@Override
@@ -114,7 +115,7 @@ public class Exercicio {
 				+ "]";
 	}
 	public Exercicio(Integer id, String nome, String função, String categoria, Integer caloriasGastas,
-			ArrayList<Preescricao> preescricoes) {
+			Preescricao preescricoes) {
 		super();
 		this.id = id;
 		this.nome = nome;
