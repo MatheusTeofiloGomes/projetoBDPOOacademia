@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 @Entity
-public class AvaliacaoNeumotora {
+public class AvaliacaoNeumotora implements Identificavel{
 	private Integer resistencia;
 	private Integer força;
 	private Integer potenciaMMSS;

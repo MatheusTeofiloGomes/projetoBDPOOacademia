@@ -2,7 +2,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Instrutor {
+public class Instrutor implements Identificavel {
 	@Id
 	private Integer id;
 	private String nome;

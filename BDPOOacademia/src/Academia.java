@@ -8,7 +8,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Academia {
+public class Academia implements Identificavel {
 	private String nome;
 	private String endereço;
 	@Id
