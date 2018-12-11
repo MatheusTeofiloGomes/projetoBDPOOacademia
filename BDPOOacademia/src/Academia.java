@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Academia implements Identificavel {
@@ -14,47 +15,55 @@ public class Academia implements Identificavel {
 	@Id
 	private Integer numeroAlvara;
 	@ManyToMany
-	@JoinTable(
-			name="instrutor_academia",
-			joinColumns=@JoinColumn(name="id_academia"),
-			inverseJoinColumns=@JoinColumn(name="id_instrutor"))
-			private Set<Instrutor> instrutores;
+	@JoinTable(name = "instrutor_academia", joinColumns = @JoinColumn(name = "id_academia"), inverseJoinColumns = @JoinColumn(name = "id_instrutor"))
+	private Set<Instrutor> instrutores;
 	@ManyToMany
-	@JoinTable(
-			name="exercicio_academia",
-			joinColumns=@JoinColumn(name="academia_id"),
-			inverseJoinColumns=@JoinColumn(name="id_exercicio"))
-			private Set<Exercicio>exercicios;
+	@JoinTable(name = "exercicio_academia", joinColumns = @JoinColumn(name = "academia_id"), inverseJoinColumns = @JoinColumn(name = "id_exercicio"))
+	private Set<Exercicio> exercicios;
+	
+	@OneToMany
+	@JoinColumn(name="id_academia")
+	private Set<Aluno>aluno;
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getEndereço() {
 		return endereço;
 	}
+
 	public void setEndereço(String endereço) {
 		this.endereço = endereço;
 	}
+
 	public Integer getNumeroAlvara() {
 		return numeroAlvara;
 	}
+
 	public void setNumeroAlvara(Integer numeroAlvara) {
 		this.numeroAlvara = numeroAlvara;
 	}
+
 	public Set<Instrutor> getInstrutores() {
 		return instrutores;
 	}
+
 	public void setInstrutores(Set<Instrutor> instrutores) {
 		this.instrutores = instrutores;
 	}
+
 	public Set<Exercicio> getExercicios() {
 		return exercicios;
 	}
+
 	public void setExercicios(Set<Exercicio> exercicios) {
 		this.exercicios = exercicios;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,6 +75,7 @@ public class Academia implements Identificavel {
 		result = prime * result + ((numeroAlvara == null) ? 0 : numeroAlvara.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -102,6 +112,7 @@ public class Academia implements Identificavel {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Academia [nome=" + nome + ", endereço=" + endereço + ", numeroAlvara=" + numeroAlvara + ", instrutores="
@@ -110,6 +121,7 @@ public class Academia implements Identificavel {
 				+ ", getExercicios()=" + getExercicios() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
 				+ ", toString()=" + super.toString() + "]";
 	}
+
 	public Academia(String nome, String endereço, Integer numeroAlvara, ArrayList<Instrutor> instrutores,
 			ArrayList<Exercicio> exercicios) {
 		super();
@@ -119,4 +131,14 @@ public class Academia implements Identificavel {
 		this.instrutores = (Set<Instrutor>) instrutores;
 		this.exercicios = (Set<Exercicio>) exercicios;
 	}
+
+	public Set<Aluno> getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Set<Aluno> aluno) {
+		this.aluno = aluno;
+	}
+
+	private DAO<Academia> daoAcademia;
 }

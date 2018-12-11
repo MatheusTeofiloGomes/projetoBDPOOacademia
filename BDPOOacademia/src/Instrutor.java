@@ -8,6 +8,7 @@ public class Instrutor implements Identificavel {
 	private String nome;
 	private Integer cref;
 	private Integer idAluno;
+	
 	public Integer getId() {
 		return id;
 	}

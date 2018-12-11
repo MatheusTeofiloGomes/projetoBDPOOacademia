@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 @Entity
 public class Exercicio implements Identificavel {
 	@Id
@@ -14,44 +15,57 @@ public class Exercicio implements Identificavel {
 	private String categoria;
 	private Integer caloriasGastas;
 	@ManyToOne
-	@JoinColumn(name="id_Preescricao")
+	@JoinColumn(name = "id_Preescricao")
 	private Preescricao preescricoes;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getFunção() {
 		return função;
 	}
+
 	public void setFunção(String função) {
 		this.função = função;
 	}
+
 	public String getCategoria() {
 		return categoria;
 	}
+
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
 	public Integer getCaloriasGastas() {
 		return caloriasGastas;
 	}
+
 	public void setCaloriasGastas(Integer caloriasGastas) {
 		this.caloriasGastas = caloriasGastas;
 	}
+
 	public Preescricao getPreescricoes() {
 		return preescricoes;
 	}
+
 	public void setPreescricoes(Preescricao preescricoes) {
 		this.preescricoes = preescricoes;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,6 +78,7 @@ public class Exercicio implements Identificavel {
 		result = prime * result + ((preescricoes == null) ? 0 : preescricoes.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -105,27 +120,5 @@ public class Exercicio implements Identificavel {
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "Exercicio [id=" + id + ", nome=" + nome + ", função=" + função + ", categoria=" + categoria
-				+ ", caloriasGastas=" + caloriasGastas + ", preescricoes=" + preescricoes + ", getId()=" + getId()
-				+ ", getNome()=" + getNome() + ", getFunção()=" + getFunção() + ", getCategoria()=" + getCategoria()
-				+ ", getCaloriasGastas()=" + getCaloriasGastas() + ", getPreescricoes()=" + getPreescricoes()
-				+ ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString()
-				+ "]";
-	}
-	public Exercicio(Integer id, String nome, String função, String categoria, Integer caloriasGastas,
-			Preescricao preescricoes) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.função = função;
-		this.categoria = categoria;
-		this.caloriasGastas = caloriasGastas;
-		this.preescricoes = preescricoes;
-	}
-	
-	
-	}
 
-
+}
